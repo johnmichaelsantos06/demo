@@ -70,7 +70,7 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 		BaseResponse<Integer> response = new BaseResponse<>();
 		
 		Optional<MemberInformation> memberInformationOpt = repository.findById(id);
-		if (memberInformationOpt.isEmpty()) {
+		if (!memberInformationOpt.isPresent()) {
 			response.setErrorMessages(Collections.singletonMap("id", "member not existing"));
 			response.setData(id);
 			
