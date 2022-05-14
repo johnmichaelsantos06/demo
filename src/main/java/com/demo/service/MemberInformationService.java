@@ -1,6 +1,6 @@
 package com.demo.service;
 
-import com.demo.mappers.MemberInformationDTO;
+import com.demo.dto.MemberInformationDTO;
 import com.demo.response.BaseResponse;
 
 public interface MemberInformationService {

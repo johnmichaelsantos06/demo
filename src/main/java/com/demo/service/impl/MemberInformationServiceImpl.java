@@ -8,8 +8,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.demo.dto.MemberInformationMapper;
-import com.demo.mappers.MemberInformationDTO;
+import com.demo.dto.MemberInformationDTO;
+import com.demo.mappers.MemberInformationMapper;
 import com.demo.model.MemberInformation;
 import com.demo.repository.MemberInformationRepository;
 import com.demo.response.BaseResponse;

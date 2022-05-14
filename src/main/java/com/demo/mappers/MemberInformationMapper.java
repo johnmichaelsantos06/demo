@@ -1,11 +1,11 @@
-package com.demo.dto;
+package com.demo.mappers;
 
 import java.util.List;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-import com.demo.mappers.MemberInformationDTO;
+import com.demo.dto.MemberInformationDTO;
 import com.demo.model.MemberInformation;
 
 @Mapper

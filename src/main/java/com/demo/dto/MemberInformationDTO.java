@@ -1,4 +1,4 @@
-package com.demo.mappers;
+package com.demo.dto;
 
 import java.util.Objects;
 

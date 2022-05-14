@@ -14,8 +14,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.demo.dto.MemberInformationMapper;
-import com.demo.mappers.MemberInformationDTO;
+import com.demo.dto.MemberInformationDTO;
+import com.demo.mappers.MemberInformationMapper;
 import com.demo.model.Gender;
 import com.demo.model.MemberInformation;
 import com.demo.repository.MemberInformationRepository;
