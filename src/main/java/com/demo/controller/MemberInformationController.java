@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.MemberInformation;
+import com.demo.mappers.MemberInformationDTO;
 import com.demo.response.BaseResponse;
 import com.demo.service.MemberInformationService;
 
@@ -24,17 +24,17 @@ public class MemberInformationController {
 	private MemberInformationService service;
 	
 	@GetMapping("/{id}")
-	public BaseResponse<MemberInformation> findById(@PathVariable("id") Integer id) {
+	public BaseResponse<MemberInformationDTO> findById(@PathVariable("id") Integer id) {
 		return service.findById(id);
 	}
 	
 	@GetMapping("list")
-	public BaseResponse<MemberInformation> findByFullName(@RequestParam(name = "fullName", required = false) String fullName) {
+	public BaseResponse<MemberInformationDTO> findByFullName(@RequestParam(name = "fullName", required = false) String fullName) {
 		return service.findByFullName(fullName);
 	}
 	
 	@PostMapping
-	public BaseResponse<MemberInformation> save(@RequestBody @Validated MemberInformation memberInfo) {
+	public BaseResponse<MemberInformationDTO> save(@RequestBody @Validated MemberInformationDTO memberInfo) {
 		return service.save(memberInfo);
 	}
 	

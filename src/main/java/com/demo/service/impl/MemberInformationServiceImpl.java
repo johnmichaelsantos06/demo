@@ -8,6 +8,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demo.dto.MemberInformationMapper;
+import com.demo.mappers.MemberInformationDTO;
 import com.demo.model.MemberInformation;
 import com.demo.repository.MemberInformationRepository;
 import com.demo.response.BaseResponse;
@@ -20,21 +22,23 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 	private MemberInformationRepository repository;
 
 	@Override
-	public BaseResponse<MemberInformation> findById(Integer id) {
-		BaseResponse<MemberInformation> response = new BaseResponse<>();
+	public BaseResponse<MemberInformationDTO> findById(Integer id) {
+		BaseResponse<MemberInformationDTO> response = new BaseResponse<>();
 		
 		Optional<MemberInformation> memberInformationOpt = repository.findById(id);
 		MemberInformation memberInfo = memberInformationOpt.orElse(new MemberInformation());
 		
+		MemberInformationDTO dto = MemberInformationMapper.INSTANCE.toDTO(memberInfo);
+		
 		response.setSuccess(1);
-		response.setData(memberInfo);
+		response.setData(dto);
 		
 		return response;
 	}
 
 	@Override
-	public BaseResponse<MemberInformation> findByFullName(String fullName) {
-		BaseResponse<MemberInformation> response = new BaseResponse<>();
+	public BaseResponse<MemberInformationDTO> findByFullName(String fullName) {
+		BaseResponse<MemberInformationDTO> response = new BaseResponse<>();
 		
 		List<MemberInformation> list = new ArrayList<>();
 		
@@ -47,20 +51,29 @@ public class MemberInformationServiceImpl implements MemberInformationService {
 		
 		memberInfos.forEach(list::add);
 		
+		List<MemberInformationDTO> listDTO = new ArrayList<>();
+		if (!list.isEmpty() || list != null) {
+			listDTO = MemberInformationMapper.INSTANCE.toDTOList(list);
+		}
+		
 		response.setSuccess(1);
-		response.setList(list);
+		response.setList(listDTO);
 		
 		return response;
 	}
 
 	@Override
-	public BaseResponse<MemberInformation> save(MemberInformation memberInfo) {
-		BaseResponse<MemberInformation> response = new BaseResponse<>();
+	public BaseResponse<MemberInformationDTO> save(MemberInformationDTO memberInfoDTO) {
+		MemberInformation memberInfo = MemberInformationMapper.INSTANCE.toModel(memberInfoDTO);
+		
+		BaseResponse<MemberInformationDTO> response = new BaseResponse<>();
 		
 		MemberInformation memberInfoSaved = repository.save(memberInfo);
 		
+		MemberInformationDTO memberInfoSavedDTO = MemberInformationMapper.INSTANCE.toDTO(memberInfoSaved);
+		
 		response.setSuccess(1);
-		response.setData(memberInfoSaved);
+		response.setData(memberInfoSavedDTO);
 		
 		return response;
 	}
