@@ -20,8 +20,12 @@ import com.demo.service.MemberInformationService;
 @RequestMapping("/member")
 public class MemberInformationController {
 	
-	@Autowired
 	private MemberInformationService service;
+	
+	@Autowired
+	public MemberInformationController(MemberInformationService service) {
+		this.service = service;
+	}
 	
 	@GetMapping("/{id}")
 	public BaseResponse<MemberInformationDTO> findById(@PathVariable("id") Integer id) {

@@ -1,5 +1,7 @@
 package com.demo.model;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -82,6 +84,24 @@ public class MemberInformation {
 
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, fullName, gender, id, ipAddress);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MemberInformation other = (MemberInformation) obj;
+		return Objects.equals(email, other.email) && Objects.equals(fullName, other.fullName) && gender == other.gender
+				&& Objects.equals(id, other.id) && Objects.equals(ipAddress, other.ipAddress);
 	}
 
 }

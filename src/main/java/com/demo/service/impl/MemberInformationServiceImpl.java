@@ -18,8 +18,12 @@ import com.demo.service.MemberInformationService;
 @Service
 public class MemberInformationServiceImpl implements MemberInformationService {
 
-	@Autowired
 	private MemberInformationRepository repository;
+	
+	@Autowired
+	public MemberInformationServiceImpl(MemberInformationRepository repository) {
+		this.repository = repository;
+	}
 
 	@Override
 	public BaseResponse<MemberInformationDTO> findById(Integer id) {

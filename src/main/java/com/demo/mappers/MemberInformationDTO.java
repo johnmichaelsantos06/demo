@@ -1,5 +1,7 @@
 package com.demo.mappers;
 
+import java.util.Objects;
+
 import com.demo.model.Gender;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -44,6 +46,24 @@ public class MemberInformationDTO {
 
 	public String getIpAddress() {
 		return ipAddress;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, fullName, gender, id, ipAddress);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MemberInformationDTO other = (MemberInformationDTO) obj;
+		return Objects.equals(email, other.email) && Objects.equals(fullName, other.fullName) && gender == other.gender
+				&& Objects.equals(id, other.id) && Objects.equals(ipAddress, other.ipAddress);
 	}
 
 }
