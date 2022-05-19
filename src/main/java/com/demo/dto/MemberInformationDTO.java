@@ -2,15 +2,33 @@ package com.demo.dto;
 
 import java.util.Objects;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 import com.demo.model.Gender;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MemberInformationDTO {
 	private Integer id;
+	
+	@NotNull(message = "Full name is required")
+	@NotBlank(message = "Full name is required")
 	private String fullName;
+	
+	@NotNull(message = "Email address is required")
+	@NotBlank(message = "Email address required")
+	@Email(message = "Invalid Email address")
 	private String email;
+	
+	@NotNull(message = "Gender is required")
 	private Gender gender;
+	
+	@NotNull(message = "IP address is required")
+	@NotBlank(message = "IP address is required")
+	@Pattern(regexp = "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$", message = "Invalid IP address")
 	private String ipAddress;
 
 	@JsonCreator(mode = JsonCreator.Mode.PROPERTIES)

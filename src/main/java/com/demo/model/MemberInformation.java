@@ -10,10 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "MEMBER_INFO")
@@ -22,29 +18,18 @@ public class MemberInformation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@NotNull(message = "Full name is required")
-	@NotBlank(message = "Full name is required")
 	@Column(name = "FULL_NAME")
 	private String fullName;
 
-	@NotNull(message = "Email address is required")
-	@NotBlank(message = "Email address required")
-	@Email(message = "Invalid Email address")
 	@Column(name = "EMAIL")
 	private String email;
 
 	@Column(name = "GENDER")
-	@NotNull(message = "Gender is required")
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 
 	@Column(name = "IP_ADDRESS")
-	@NotNull(message = "IP address is required")
-	@NotBlank(message = "IP address is required")
-	@Pattern(regexp = "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$", message = "Invalid IP address")
 	private String ipAddress;
-
-
 
 	public Integer getId() {
 		return id;
